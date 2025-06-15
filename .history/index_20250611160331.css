@@ -1,0 +1,13 @@
+body{
+  background-color: white;
+  margin: 0%;
+  font-family: s;
+}
+#navbar{
+display: flex;
+padding: 10px 0;
+width: 100%;
+}
+#navbar>a{
+    margin-right: 0%;
+}

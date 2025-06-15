@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="navbar">
+                 <h2>ArtColla</h2>
+            <p>A platform for artists to connect and share their creativity</p>
+            <div class="links">
+            <a href="login.html">Log-In</a>
+            <a href="signup.html">Sign-Up</a>
+            </div>
+    </div>
+   <main id="home-page">
+     <section class="intro-video">
+  <h2>Discover ArtColla</h2>
+  <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/BIj71N1tk-0"
+          title="Discover ArtColla"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+  </iframe>
+</section>
+<section class="app-details">
+<h3>Why Choose ArtCollab?</h3>
+ <p>ArtColla helps artists showcase their portfolios, collaborate on creative projects, and connect with a vibrant community.</p>
+
+  <div class="features">
+      <div class="feature">
+        <img src="images/gallery.png" alt="Gallery Feature">
+        <h4>Art Gallery</h4>
+        <p>Display your artwork in a personalized gallery space.</p>
+      </div>
+
+      <div class="feature">
+        <img src="images/collab.png" alt="Collaboration Feature">
+        <h4>Collaborate</h4>
+        <p>Work with other artists on shared projects and ideas.</p>
+      </div>
+
+      <div class="feature">
+        <img src="images/community.png" alt="Community Feature">
+        <h4>Community</h4>
+        <p>Engage in discussions, share feedback, and grow together.</p>
+      </div>
+    </div>
+  </section>
+</main>
+✅ CSS to Style the Section
+css
+Copy
+Edit
+#home-main {
+  padding: 40px;
+  background-color: #f9f9f9;
+}
+
+.intro-video {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro-video h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.intro-video video {
+  width: 90%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.app-details {
+  text-align: center;
+}
+
+.app-details h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.app-details p {
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  color: #555;
+  font-size: 16px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.feature {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.feature img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.feature h4 {
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 14px;
+  color: #666;
+}
+📁 File Structure (suggested)
+css
+Copy
+Edit
+index.html
+styles.css
+media/
+  intro-video.mp4
+images/
+  gallery.png
+  collab.png
+  community.png
+Would you like to make this section responsive for mobile screens as well? Or would you like help designing a call-to-action (CTA) area below the features?
+
+
+
+
+
+
+</section>
+
+   </main>
+</body>
+</html>

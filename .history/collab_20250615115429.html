@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <style>
+#main {
+  background-color: #fff;
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 40px 35px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#main label {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #333;
+  display: block;
+}
+#main input[type="text"],
+#main textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border 0.3s;
+  background-color: #fdfdfd;
+}
+
+#main input:focus,
+#main textarea:focus {
+  border-color: #ff6f61;
+  outline: none;
+}
+#invite-wrapper {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+#collabInput {
+  flex: 1;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#addCollaboratorBtn {
+  padding: 12px 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#addCollaboratorBtn:hover {
+  background-color: #e6574c;
+}
+
+#main button#submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+#main button#submit:hover {
+  background-color: #3c9943;
+}
+#collaboratorsList {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#collaboratorsList li {
+  background: #ffeef1;
+  border: 1px solid #ff6f61;
+  border-radius: 20px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #a6374f;
+  font-weight: 500;
+}
+
+#collaboratorsList li button {
+  background: none;
+  border: none;
+  color: #ff6f61;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+footer {
+  background-color: rgb(6, 14, 37);
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+footer h2 {
+  margin: 0;
+}
+
+footer p {
+  margin: 5px 0;
+  color: #aaa;
+}
+
+.footer-links a {
+  margin-right: 15px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+#footer-socialmedia-links {
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+}
+
+#footer-socialmedia-links a {
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+#footer-socialmedia-links a:hover {
+  color: white;
+}
+
+@media (max-width: 600px) {
+  #main {
+    padding: 30px 20px;
+    margin: 40px 16px;
+  }
+
+  #invite-wrapper {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #addCollaboratorBtn {
+    width: 100%;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+ </style>
+</head>
+
+<body>
+  <div id="navbar">
+    <h2>ArtCollab</h2>
+    <p>A platform for artists to connect and share their creativity</p>
+    <div class="links">
+      <a href="dashboard.html">Home</a>
+      <a href="project.html">MyProjects</a>
+      <a href="collab.html">NewCollab</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="profile.html">Account</a>
+      <a href="index.html">LogOut</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <div id="creat-collab">
+      <label for="title">Title:</label>
+      <input type="text" name="" id="title">
+
+      <label for="description">Description:</label>
+      <textarea id="description" rows="5" placeholder="Write something about the project..."></textarea>
+
+      <div id="invite-wrapper" style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <input type="text" id="collabInput" placeholder="Enter username or email" style="flex-grow: 1;" />
+        <button type="button" id="addCollaboratorBtn">Add</button>
+      </div>
+
+
+      <button id="submit">Submit</button>
+    </div>
+    <ul id="collaboratorsList"></ul>
+  </main>
+
+
+
+
+  <footer id="footer">
+    <div class="footer-text">
+      <h2>ArtCollab</h2>
+      <p>Connecting artists and creativity worldwide.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms</a>
+    </div>
+    <div id="footer-socialmedia-links">
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+  </footer>
+</body>
+ <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+   const firebaseConfig = {
+  apiKey: "AIzaSyCARhXr1WtK3_Ul8Kr4YrwCUGlma33RQVg",
+  authDomain: "artcollabapp-2926c.firebaseapp.com",
+  projectId: "artcollabapp-2926c",
+  storageBucket: "artcollabapp-2926c.appspot.com",
+  messagingSenderId: "1046839884071",
+  appId: "1:1046839884071:web:7b627ae286644995b61102",
+  measurementId: "G-JH6L2F77T1"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    let currentUser = null;
+    const collaborators = [];
+
+    const collabInput = document.getElementById("collabInput");
+    const addBtn = document.getElementById("addCollaboratorBtn");
+    const collabList = document.getElementById("collaboratorsList");
+    const submitBtn = document.getElementById("submit");
+
+    submitBtn.disabled = true;
+
+    let initDone = false;
+
+    onAuthStateChanged(auth, (user) => {
+      console.log("Auth state changed, user:", user);
+      if (user) {
+        currentUser = user;
+        submitBtn.disabled = false;
+        if (!initDone) {
+          initEventListeners();
+          initDone = true;
+        }
+      } else {
+        
+        window.location.href = "index.html";
+      }
+    });
+
+    function initEventListeners() {
+      addBtn.addEventListener("click", () => {
+        const value = collabInput.value.trim().toLowerCase();
+        if (value && !collaborators.includes(value)) {
+          collaborators.push(value);
+          updateCollaboratorsList();
+          collabInput.value = "";
+        }
+      });
+
+      submitBtn.addEventListener("click", async () => {
+        const title = document.getElementById("title").value.trim();
+        const description = document.getElementById("description").value.trim();
+
+        if (!title || !description) {
+          alert("Please fill in title and description.");
+          return;
+        }
+
+        const userIds = [];
+
+        for (const email of collaborators) {
+          const usersQuery = query(collection(db, "users"), where("email", "==", email));
+          const snapshot = await getDocs(usersQuery);
+
+          if (snapshot.empty) {
+            alert(`Collaborator not found: ${email}`);
+            return;
+          }
+
+          snapshot.forEach((doc) => {
+            userIds.push(doc.id);
+          });
+        }
+
+        const projectData = {
+          title,
+          description,
+          ownerId: currentUser.uid,
+          participants: userIds,
+          createdAt: new Date().toISOString(),
+        };
+
+        try {
+          await addDoc(collection(db, "collabProjects"), projectData);
+          alert("Project created successfully!");
+
+          document.getElementById("title").value = "";
+          document.getElementById("description").value = "";
+          collaborators.length = 0;
+          updateCollaboratorsList();
+        } catch (error) {
+          console.error("Error creating project:", error);
+          alert("Failed to create project. Try again.");
+        }
+      });
+    }
+
+    function updateCollaboratorsList() {
+      collabList.innerHTML = "";
+      collaborators.forEach((email, index) => {
+        const li = document.createElement("li");
+        li.textContent = email;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "×";
+        removeBtn.onclick = () => {
+          collaborators.splice(index, 1);
+          updateCollaboratorsList();
+        };
+
+        li.appendChild(removeBtn);
+        collabList.appendChild(li);
+      });
+    }
+  </script>
+
+
+
+</html>

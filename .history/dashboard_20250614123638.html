@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="navbar">
+      <h2>ArtCollab</h2>
+      <p>A platform for artists to connect and share their creativity</p>
+      <div class="links">
+        <a href="dashboard.html">Home</a>
+        <a href="projects.html">MyProjects</a>
+        <a href="collab.html">NewCollab</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="profile.html">Account</a>
+        <a href="login.html">LogOut</a>
+      </div>
+    </div>
+    <section id="hero">
+      <h1>Welcome to ArtCollab 🎨</h1>
+      <p>Share your creativity. Get inspired. Collaborate with others.</p>
+      <a href="upload.html" class="upload-btn">Upload New Art</a>
+    </section>
+
+    <section id="recent-art">
+      <h2>Recent Uploads</h2>
+      <div id="art-dashboard"></div>
+
+    </section>
+  </div>
+  <footer id="footer">
+    <h2>ArtCollab</h2>
+    <p>Connecting artists and creativity worldwide.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms</a>
+    </div>
+    <div id="footer-socialmedia-links">
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+  </footer>
+</body>
+
+</html>
+<script type="module">
+  import { collection, getDocs } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+  import { firestore } from './firebase-config.js';
+
+  async function loadArtDashboard() {
+    const dashboard = document.getElementById('art-dashboard');
+    dashboard.innerHTML = "Loading...";
+
+    try {
+      const querySnapshot = await getDocs(collection(firestore, "artGallery"));
+      dashboard.innerHTML = ""; 
+
+      querySnapshot.forEach((doc) => {
+        const art = doc.data();
+
+        const card = document.createElement("div");
+        card.classList.add("art-card");
+
+        let content = "";
+        if (art.type === "image") {
+          content = `<img src="${art.fileurl}" alt="${art.title}" style="max-width:100%; height:auto;">`;
+        } else if (art.type === "audio") {
+          content = `<audio controls src="${art.fileurl}"></audio>`;
+        } else if (art.type === "text") {
+          content = `<p>${art.content}</p>`;
+        }
+
+        card.innerHTML = `
+          <h3>${art.title}</h3>
+          <p>${art.description}</p>
+          ${content}
+          <small>Uploaded: ${new Date(art.createdAt.seconds * 1000).toLocaleString()}</small>
+        `;
+
+        dashboard.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Failed to load art:", error);
+      dashboard.innerHTML = "Failed to load art.";
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", loadArtDashboard);
+</script>

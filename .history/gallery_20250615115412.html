@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artwork Categories - ArtCollab</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+ <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 30px auto 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filters input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .filters select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .artwork-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .artwork-card {
+      background: #f2f2f2;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .artwork-card img {
+      max-width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .artwork-card h4 {
+      margin: 10px 0 5px;
+      color: #333;
+      min-height: 48px;
+    }
+
+    .artwork-card span {
+      font-size: 14px;
+      color: #777;
+      display: block;
+      margin-top: 5px;
+    }
+
+    #navbar {
+      background-color: #222;
+      color: white;
+      display: flex;
+      padding: 20px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #navbar h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #navbar p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      background-color: #444;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .links a:hover {
+      background-color: #555;
+    }
+
+    footer {
+      flex-shrink: 0;
+      background-color: rgb(6, 14, 37);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      margin: 0 10px;
+      color: #ccc;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    #footer-socialmedia-links {
+      display: flex;
+      gap: 15px;
+      font-size: 20px;
+    }
+
+    #footer-socialmedia-links a {
+      color: #ccc;
+    }
+
+    #footer-socialmedia-links a:hover {
+      color: white;
+    }
+#logo svg {
+  display: block;
+}
+
+#logo span {
+  user-select: none;
+}
+
+ </style>
+</head>
+<body>
+  <div id="navbar">
+   <div id="logo" style="display: flex; align-items: center; gap: 10px;">
+  <svg width="50" height="40" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(10,10)">
+      <rect x="0" y="20" width="10" height="30" fill="#ff6f61" rx="2"/>
+      <path d="M0 20 L15 10 L20 15 L5 25 Z" fill="#ff9a76" />
+      <circle cx="25" cy="15" r="8" fill="#4a90e2" opacity="0.7"/>
+      <circle cx="35" cy="25" r="8" fill="#50e3c2" opacity="0.7"/>
+    </g>
+  </svg>
+  <span style="font-family: Arial, sans-serif; font-size: 24px; color: white; font-weight: bold;">
+    ArtCollab
+  </span>
+</div>
+    <p>A platform for artists to connect and share their creativity</p>
+    <div class="links">
+      <a href="dashboard.html">Home</a>
+      <a href="project.html">MyProjects</a>
+      <a href="collab.html">New Collab</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="profile.html">Account</a>
+      <a href="index.html">LogOut</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search artwork...">
+      <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="painting">Painting</option>
+        <option value="sculpture">Sculpture</option>
+        <option value="music">Music</option>
+        <option value="digital">Digital</option>
+        <option value="photography">Photography</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="artwork-grid" id="artworkGrid">
+      <!-- Artworks will appear here -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-text">
+      <h2>ArtCollab</h2>
+      <p>Connecting artists and creativity worldwide.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms</a>
+    </div>
+    <div id="footer-socialmedia-links">
+      <a href="https://x.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const artworkGrid = document.getElementById('artworkGrid');
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+
+    // Map department from MET API to categories matching dropdown values (lowercase)
+    function mapDepartmentToCategory(dept) {
+      if (!dept) return 'other';
+      dept = dept.toLowerCase();
+      if (dept.includes('paintings')) return 'painting';
+      if (dept.includes('sculpture')) return 'sculpture';
+      if (dept.includes('photographs')) return 'photography';
+      if (dept.includes('music')) return 'music';
+      if (dept.includes('media arts')) return 'digital';
+      return 'other';
+    }
+
+    async function loadArtworks() {
+      try {
+        const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects');
+        const data = await response.json();
+        const allIDs = data.objectIDs.slice(0, 50); // limit to first 50 for speed
+
+        // Fetch details in parallel with Promise.all
+        const artPromises = allIDs.map(id => 
+          fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+          .then(res => res.json())
+        );
+        const arts = await Promise.all(artPromises);
+
+        // Filter artworks with images and title, map data
+        const artworks = arts
+          .filter(art => art.primaryImageSmall && art.title)
+          .map(art => ({
+            id: art.objectID,
+            title: art.title,
+            image: art.primaryImageSmall,
+            category: mapDepartmentToCategory(art.department),
+            artist: art.artistDisplayName || 'Unknown Artist'
+          }));
+
+        if (artworks.length === 0) {
+          artworkGrid.innerHTML = '<p>No artworks found.</p>';
+          return;
+        }
+
+        displayArtworks(artworks);
+      } catch (error) {
+        artworkGrid.innerHTML = `<p>Error loading artworks. Please try again later.</p>`;
+        console.error(error);
+      }
+    }
+
+    function displayArtworks(artworks) {
+      artworkGrid.innerHTML = '';
+      artworks.forEach(art => {
+        const card = document.createElement('div');
+        card.classList.add('artwork-card');
+        card.dataset.category = art.category;
+        card.innerHTML = `
+          <img src="${art.image}" alt="${art.title}" />
+          <h4>${art.title}</h4>
+          <span>${art.category.charAt(0).toUpperCase() + art.category.slice(1)} - ${art.artist}</span>
+        `;
+        artworkGrid.appendChild(card);
+      });
+
+      attachFilterListeners();
+    }
+
+    function filterArtworks() {
+      const search = searchInput.value.toLowerCase();
+      const category = categoryFilter.value.toLowerCase();
+
+      const cards = document.querySelectorAll(".artwork-card");
+      cards.forEach(card => {
+        const title = card.querySelector("h4").innerText.toLowerCase();
+        const cardCategory = card.dataset.category.toLowerCase();
+
+        const matchesSearch = title.includes(search);
+        const matchesCategory = category === "all" || cardCategory === category;
+
+        card.style.display = matchesSearch && matchesCategory ? "block" : "none";
+      });
+    }
+
+    function attachFilterListeners() {
+      searchInput.addEventListener("input", filterArtworks);
+      categoryFilter.addEventListener("change", filterArtworks);
+    }
+
+    loadArtworks();
+  </script>
+</body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArtCollab Dashboard</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fbeaff, #e0f7ff);
+      color: #333;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #navbar {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      text-align: center;
+    }
+
+    #navbar h2 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    #navbar p {
+      font-size: 14px;
+      color: #aaa;
+      margin: 0;
+    }
+
+    .links {
+      margin-top: 10px;
+    }
+
+    .links a {
+      margin: 0 8px;
+      text-decoration: none;
+      color: white;
+      background-color: #444;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .links a:hover {
+      background-color: #666;
+    }
+
+    #hero {
+      background: #fff9fc;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    #hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    #hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .upload-btn {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 18px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .upload-btn:hover {
+      background-color: #218838;
+    }
+
+    #recent-art {
+      padding: 40px 20px;
+      background-color: #f3f6fb;
+    }
+
+    #recent-art h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    #art-dashboard {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-bottom: 10px;
+      align-items: center;
+    }
+
+    .art-card {
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .art-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .art-card h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #222;
+    }
+
+    .art-card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .art-card img {
+      width: 100%;
+      max-height: 500px;
+      height: auto;
+      border-radius: 8px;
+      object-fit: contain;
+      align-self: center;
+    }
+
+    .art-card audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .art-card small {
+      color: #999;
+      font-size: 12px;
+    }
+
+    .comments-section {
+      margin-top: 15px;
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+    }
+
+    .comments-list {
+      max-height: 150px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    .comment {
+      border-bottom: 1px solid #eee;
+      padding: 6px 0;
+      font-size: 13px;
+    }
+
+    .comment strong {
+      color: #444;
+    }
+
+    .comment-time {
+      color: #999;
+      font-size: 11px;
+      margin-left: 6px;
+    }
+
+    .comment-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .comment-input {
+      flex: 1;
+      padding: 6px 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .comment-submit-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .comment-submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: rgb(6, 14, 37);
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    footer h2 {
+      margin: 0;
+    }
+
+    footer p {
+      margin: 5px 0;
+      color: #aaa;
+    }
+
+    .footer-links a {
+      margin-right: 15px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    #footer-socialmedia-links {
+      display: flex;
+      gap: 15px;
+      font-size: 18px;
+    }
+
+    #footer-socialmedia-links a {
+      color: #ccc;
+      transition: color 0.3s;
+    }
+
+    #footer-socialmedia-links a:hover {
+      color: white;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      align-self: flex-start;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+
+    @media (max-width: 768px) {
+      #navbar {
+        flex-direction: column;
+      }
+
+      .links {
+        text-align: center;
+      }
+
+      .footer-links,
+      #footer-socialmedia-links {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="navbar">
+    <div id="logo" style="display: flex; align-items: center; gap: 10px;">
+  <svg width="50" height="40" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(10,10)">
+      <rect x="0" y="20" width="10" height="30" fill="#ff6f61" rx="2"/>
+      <path d="M0 20 L15 10 L20 15 L5 25 Z" fill="#ff9a76" />
+      <circle cx="25" cy="15" r="8" fill="#4a90e2" opacity="0.7"/>
+      <circle cx="35" cy="25" r="8" fill="#50e3c2" opacity="0.7"/>
+    </g>
+  </svg>
+  <span style="font-family: Arial, sans-serif; font-size: 24px; color: white; font-weight: bold;">
+    ArtCollab
+  </span>
+</div>
+
+      <p>A platform for artists to connect and share their creativity</p>
+      <div class="links">
+        <a href="dashboard.html">Home</a>
+        <a href="project.html">MyProjects</a>
+        <a href="collab.html">NewCollab</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="profile.html">Account</a>
+        <a href="login.html">LogOut</a>
+      </div>
+    </div>
+    <section id="hero">
+      <h1>Welcome to ArtCollab 🎨</h1>
+      <p>Share your creativity. Get inspired. Collaborate with others.</p>
+      <a href="upload.html" class="upload-btn">Upload New Art</a>
+    </section>
+
+    <section id="recent-art">
+      <h2>Recent Uploads</h2>
+      <div id="art-dashboard"></div>
+    </section>
+  </div>
+
+  <footer id="footer">
+    <h2>ArtCollab</h2>
+    <p>Connecting artists and creativity worldwide.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms</a>
+    </div>
+    <div id="footer-socialmedia-links">
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import {
+      collection,
+      getDocs,
+      doc,
+      deleteDoc,
+      query,
+      orderBy,
+      addDoc,
+      serverTimestamp,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    import { firestore } from "./firebase-config.js";
+
+    const auth = getAuth();
+
+    async function deleteArt(docId) {
+      try {
+        await deleteDoc(doc(firestore, "artGallery", docId));
+        console.log("Document successfully deleted!");
+      } catch (error) {
+        console.error("Error removing document: ", error);
+        alert("Failed to delete art.");
+      }
+    }
+
+    function formatTimestamp(timestamp) {
+      if (!timestamp) return "";
+      const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp.seconds * 1000);
+      return date.toLocaleString();
+    }
+
+    function loadComments(artId, commentsContainer) {
+      const commentsRef = collection(firestore, "artGallery", artId, "comments");
+      const commentsQuery = query(commentsRef, orderBy("createdAt", "asc"));
+
+      commentsContainer.innerHTML = "Loading comments...";
+
+      onSnapshot(commentsQuery, (querySnapshot) => {
+        commentsContainer.innerHTML = "";
+        if (querySnapshot.empty) {
+          commentsContainer.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
+          return;
+        }
+
+        querySnapshot.forEach(doc => {
+          const c = doc.data();
+          const commentDiv = document.createElement("div");
+          commentDiv.classList.add("comment");
+          commentDiv.innerHTML = `<strong>${c.username || "Anonymous"}</strong><span class="comment-time">${formatTimestamp(c.createdAt)}</span><br>${c.text}`;
+          commentsContainer.appendChild(commentDiv);
+        });
+      }, (error) => {
+        commentsContainer.innerHTML = `<p>Error loading comments: ${error.message}</p>`;
+      });
+    }
+
+    async function addComment(artId, user, commentText, inputElem) {
+      if (!commentText.trim()) {
+        alert("Comment cannot be empty.");
+        return;
+      }
+
+      const commentsRef = collection(firestore, "artGallery", artId, "comments");
+      try {
+        await addDoc(commentsRef, {
+          text: commentText,
+          createdAt: serverTimestamp(),
+          uid: user.uid,
+          username: user.displayName || user.email || "Anonymous"
+        });
+        inputElem.value = "";
+      } catch (error) {
+        alert("Failed to add comment: " + error.message);
+      }
+    }
+
+    async function loadArtDashboard(currentUserId) {
+      const dashboard = document.getElementById("art-dashboard");
+      dashboard.innerHTML = "Loading...";
+
+      let currentUser = null;
+      if (currentUserId) {
+        currentUser = auth.currentUser;
+      }
+
+      try {
+        const querySnapshot = await getDocs(collection(firestore, "artGallery"));
+        dashboard.innerHTML = "";
+
+        const artsArray = [];
+        querySnapshot.forEach((docSnap) => {
+          artsArray.push({ id: docSnap.id, data: docSnap.data() });
+        });
+
+        artsArray.sort((a, b) => b.data.createdAt.seconds - a.data.createdAt.seconds);
+
+        artsArray.forEach(({ id, data: art }) => {
+          const card = document.createElement("div");
+          card.classList.add("art-card");
+
+          let content = "";
+          if (art.type === "image") {
+            content = `<img src="${art.fileurl}" alt="${art.title}" style="max-width:100%; height:auto;">`;
+          } else if (art.type === "audio") {
+            content = `<audio controls src="${art.fileurl}"></audio>`;
+          } else if (art.type === "text") {
+            content = `<p>${art.content}</p>`;
+          }
+
+          let deleteButtonHtml = "";
+          if (currentUserId && art.ownerId && art.ownerId === currentUserId) {
+            deleteButtonHtml = `<button class="delete-btn" data-id="${id}">Delete</button>`;
+          }
+
+          card.innerHTML = `
+            <h3>${art.title}</h3>
+            <p>${art.description}</p>
+            ${content}
+            <small>Uploaded: ${new Date(art.createdAt.seconds * 1000).toLocaleString()}</small>
+            ${deleteButtonHtml}
+            <div class="comments-section">
+              <h4>Comments</h4>
+              <div class="comments-list" id="comments-list-${id}">Loading comments...</div>
+              ${currentUser ? `
+              <form class="comment-form" id="comment-form-${id}">
+                <input type="text" class="comment-input" placeholder="Add a comment..." required />
+                <button type="submit" class="comment-submit-btn">Post</button>
+              </form>` : `<p><em>Log in to comment</em></p>`}
+            </div>
+          `;
+
+          dashboard.appendChild(card);
+
+          const commentsContainer = card.querySelector(`#comments-list-${id}`);
+          loadComments(id, commentsContainer);
+
+          if (currentUser) {
+            const commentForm = card.querySelector(`#comment-form-${id}`);
+            const commentInput = commentForm.querySelector(".comment-input");
+
+            commentForm.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              await addComment(id, currentUser, commentInput.value, commentInput);
+            });
+          }
+        });
+
+        document.querySelectorAll(".delete-btn").forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            const docId = event.target.getAttribute("data-id");
+            const confirmed = confirm("Are you sure you want to delete this art?");
+            if (confirmed) {
+              await deleteArt(docId);
+              alert("Art deleted successfully!");
+              loadArtDashboard(currentUserId);
+            }
+          });
+        });
+      } catch (error) {
+        console.error("Failed to load art:", error);
+        dashboard.innerHTML = "Failed to load art.";
+      }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loadArtDashboard(user.uid);
+      } else {
+        loadArtDashboard(null);
+      }
+    });
+  </script>
+</body>
+
+</html>

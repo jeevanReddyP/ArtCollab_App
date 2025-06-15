@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="upload.css">
+</head>
+
+<body>
+    <main>
+        <h2>Share Your Art</h2>
+        <form id="artform">
+            <label for="arttitle">Title :</label>
+            <input type="text" name="title" id="arttitle">
+
+            <label for="description">Description :</label>
+            <textarea id="description" rows="5" placeholder="Describe your artwork..."></textarea>
+          
+            <label for="artselet">ArtSelect :</label>
+          <select name="type" id="artselect">
+                <option value="image">Image</option>
+                <option value="audio">Audio</option>
+                <option value="text">Text</option>
+            </select>
+
+            <div id="input-area">
+              
+            </div>
+
+            <button id="submit">Submit</button>
+        </form>
+    </main>
+</body>
+
+</html>
+<script>
+    let artselect=document.getElementById("artselect")
+    let inputarea=document.getElementById("input-area")
+
+    artselect.addEventListener("change",()=>{
+        inputarea.innerHTML=""
+
+        let selectedart=artselect.value
+
+        if(selectedart==="image"||selectedart==="audio"){
+            const fileInput=document.createElement("input")
+             fileInput.type = "file";
+    fileInput.name = "artfile";
+    fileInput.accept = selectedart === "image" ? "image/*" : "audio/*";
+    inputarea.appendChild(fileInput)
+        }else{
+            const textinput=document.createElement("textarea")
+            textinput.name="arttext"
+            textinput.rows=6;
+            textinput.placeholder="Write your poetry or story here..."
+            inputarea.appendChild(textinput)
+        }
+    })
+
+let submit=document.getElementById('submit')
+
+
+submit.addEventListener("click",(event)=>{
+event.preventDefault()
+
+let title=document.getElementById("arttitle").value
+let description=document.getElementById("description").value
+let art=document.getElementById("artselect").value
+
+if(art==="text"){
+const textValue = document.querySelector('textarea[name="arttext"]').value;
+
+let post={
+    title,
+    description,
+    type:art,
+    content:textValue,
+};
+
+localStorage.setItem("artvalue",JSON.stringify(post))
+window.location="dashboard.html";
+}else{
+const file = document.querySelector('input[type="file"]').files[0];
+
+if(!file){
+    alert("please upload the file.")
+    return
+}
+const reader= new FileReader()
+reader.onload=function(){
+let fileurl=reader.
+}
+ post={
+
+ }
+}
+})
+</script>

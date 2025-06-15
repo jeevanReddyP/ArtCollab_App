@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <h2>Share Your Art</h2>
+        <form id="artform">
+            <label for="arttitle">Title :</label>
+            <input type="text" name="" id="arttitle">
+
+            <label for="description">Description:</label>
+            <textarea id="description" rows="5" placeholder="Describe your artwork..."></textarea>
+          
+            <label for="artselet">ArtSelect</label>
+            <select name="" id="artselect">
+                <option value="image">Image</option>
+                <option value="audio">Audio</option>
+                <option value="text">Text</option>
+            </select>
+
+            <div id="input-area">
+              
+            </div>
+
+            <button id="submit">Submit</button>
+        </form>
+    </main>
+</body>
+
+</html>
+<script>
+    let artselect=document.getElementById("artselect")
+    let inputarea=document.getElementById("input-area")
+
+    artselect.addEventListener("change",()=>{
+        inputarea.innerHTML=""
+
+        let selectedart=artselect.value
+
+        if()
+    })
+</script>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Projects - ArtCollab</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <style>
+ body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#main {
+  flex-grow: 1;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+    #navbar {
+      background-color: #222;
+      color: white;
+      display: flex;
+      padding: 20px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #navbar h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #navbar p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      background-color: #444;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .links a:hover {
+      background-color: #555;
+    }
+
+    #main {
+  max-width: 960px;
+  margin: 40px auto ; 
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  flex-grow: 1;
+}
+
+
+
+    #main h2 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #333;
+      text-align: center;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .project-item {
+      background: linear-gradient(to right, #ffeaea, #fff8f8);
+      border-left: 5px solid #ff6f61;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+
+    .project-item:hover {
+      transform: scale(1.01);
+    }
+
+    .project-item h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #222;
+    }
+
+    .project-item p {
+      margin: 0 0 8px;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .project-item span {
+      font-size: 13px;
+      color: #888;
+    }
+
+ footer {
+  margin: 0; /* remove any margins */
+  padding: 20px;
+  background-color: rgb(6, 14, 37);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+    .footer-links a {
+      text-decoration: none;
+      margin: 0 10px;
+      color: #ccc;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    #footer-socialmedia-links {
+      display: flex;
+      gap: 15px;
+      font-size: 20px;
+    }
+
+    #footer-socialmedia-links a {
+      color: #ccc;
+    }
+
+    #footer-socialmedia-links a:hover {
+      color: white;
+    }
+
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #main {
+        padding: 25px;
+        margin: 30px 10px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar">
+    <h2>ArtCollab</h2>
+    <p>A platform for artists to connect and share their creativity</p>
+    <div class="links">
+      <a href="dashboard.html">Home</a>
+      <a href="project.html">MyProjects</a>
+      <a href="collab.html">New Collab</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="profile.html">Account</a>
+      <a href="index.html">LogOut</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <h2>My Projects</h2>
+    <div id="projectsContainer" class="grid-container">
+      <p>Loading projects...</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-text">
+      <h2>ArtCollab</h2>
+      <p>Connecting artists and creativity worldwide.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms</a>
+    </div>
+    <div id="footer-socialmedia-links">
+      <a href="https://x.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCARhXr1WtK3_Ul8Kr4YrwCUGlma33RQVg",
+      authDomain: "artcollabapp-2926c.firebaseapp.com",
+      projectId: "artcollabapp-2926c",
+      storageBucket: "artcollabapp-2926c.appspot.com",
+      messagingSenderId: "1046839884071",
+      appId: "1:1046839884071:web:7b627ae286644995b61102",
+      measurementId: "G-JH6L2F77T1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    const projectsList = document.getElementById("projectsContainer");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const q = query(collection(db, "collabProjects"), where("ownerId", "==", user.uid));
+        const snapshot = await getDocs(q);
+
+        projectsList.innerHTML = "";
+
+        if (snapshot.empty) {
+          projectsList.innerHTML = "<p>No projects found.</p>";
+        } else {
+          snapshot.forEach(doc => {
+            const project = doc.data();
+            const item = document.createElement("div");
+            item.classList.add("project-item");
+            item.innerHTML = `
+              <h3>${project.title}</h3>
+              <p>${project.description}</p>
+              <span>Created on: ${new Date(project.createdAt).toLocaleDateString()}</span>
+            `;
+            projectsList.appendChild(item);
+          });
+        }
+      } else {
+        projectsList.innerHTML = "<p>Please log in to view your projects.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

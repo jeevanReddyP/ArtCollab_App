@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ArtCollab Signup</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: rgb(110, 218, 194);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #background {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: rgb(144, 198, 165);
+      width: 90%;
+      max-width: 900px;
+      height: 80%;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    #background > div:first-child {
+      text-align: center;
+      flex: 1;
+    }
+
+    #signup {
+      flex: 1;
+      max-width: 350px;
+      background-color: rgb(50, 66, 91);
+      color: white;
+      padding: 30px 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #signup input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    #signup button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      background-color: rgb(32, 212, 185);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #signup button:hover {
+      background-color: rgb(28, 180, 160);
+    }
+
+    a {
+      color: rgb(32, 212, 185);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      #background {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+      }
+
+      #signup {
+        width: 100%;
+        max-width: 90%;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="background">
+    <div>
+      <h1>Welcome to <span style="color: rgb(50, 66, 91);">ArtCollab</span></h1>
+      <p>Where creativity meets collaboration!</p>
+    </div>
+    <div id="signup">
+      <h2>Sign Up</h2>
+      <p>Join our creative community</p>
+      <input type="email" id="signup-email" placeholder="Enter your email" required />
+      <input type="password" id="signup-password" placeholder="Enter your password" required />
+      <button id="signup-button">Sign Up</button>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+  </div>
+</body>
+<script type="module"  src="index.js"></script>
+</html>

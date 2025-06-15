@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #fbeaff, #e0f7ff);
+  color: #333;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+#home-page {
+  padding: 40px;
+  background: linear-gradient(135deg, #fbeaff, #e0f7ff);
+}
+
+#navbar{
+background-color:#222;
+color: white;
+display: flex;
+padding: 20px;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+}
+#navbar h2{
+   margin: 0;
+   font-size: 24px;
+}
+#navbar p{
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #ccc;
+}
+.links a{
+margin-left: 20px;
+text-decoration: none;
+color: white;
+background-color: #444;
+padding: 8px 12px;
+border-radius: 4px;
+transition: background-color 0.3s;
+}
+.upload-btn{
+  color: green;
+}
+
+
+footer{
+background-color: rgb(6, 14, 37);
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-radius: 3px;
+height: 100px;
+}
+footer h2{
+    margin-left: 20px;
+    padding: 10px;
+}
+#footer-links a{
+text-decoration: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+#footer-socialmedia-links{
+width: 100px;
+margin-right: 40px;
+padding: 20px;
+display: flex;
+justify-content:space-between;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <div id="navbar">
+                 <h2>ArtCollab</h2>
+            <p>A platform for artists to connect and share their creativity</p>
+            <div class="links">
+            <a href="dashboard.html">Home</a>
+            <a href="projects.html">MyProjects</a>
+            <a href="collab.html">NewCollab</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="profile.html">Account</a>
+            <a href="login.html">LogOut</a>
+            </div>
+    </div>
+      <section id="hero">
+    <h1>Welcome to ArtCollab 🎨</h1>
+    <p>Share your creativity. Get inspired. Collaborate with others.</p>
+    <a href="upload.html" class="upload-btn" >Upload New Art</a>
+  </section>
+
+   <section id="recent-art">
+    <h2>Recent Uploads</h2>
+    <div class="art-feed" id="artFeed">
+<img src="" alt="">
+    </div>
+  </section>
+</div>
+  <footer id="footer">
+<h2>ArtCollab</h2>
+ <p>Connecting artists and creativity worldwide.</p>
+<div class="footer-links">
+<a href="#">About</a>
+<a href="#">Contact</a>
+<a href="#">Terms</a>
+</div>
+<div id="footer-socialmedia-links">
+    <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+  <i class="fa-brands fa-x-twitter"></i>
+</a>
+<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+  <i class="fa-brands fa-youtube"></i>
+</a>
+<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+  <i class="fa-brands fa-facebook"></i>
+</a>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+  <i class="fa-brands fa-instagram"></i>
+</a>
+</div>
+</footer>
+</body>
+</html>
+<script>
+  const arts=JSON.parse(localStorage.getItem("artGallery"))
+  arts.forEach(element => {
+    let div= document.createElement("div")
+    div.innerHTML=`
+
+    `
+  });
+</script>

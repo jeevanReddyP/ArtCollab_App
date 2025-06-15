@@ -1,0 +1,15 @@
+body{
+  margin: 0%;
+  font-family: sans-serif;
+}
+#navbar{
+background-color:#222;
+color: white;
+display: flex;
+padding: 20px;
+justify-content: s;
+width: 100%;
+}
+#navbar>a{
+    margin-right: 0%;
+}

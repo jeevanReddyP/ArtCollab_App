@@ -1,0 +1,80 @@
+    // Validate profile picture type and size
+    if (!allowedTypes.includes(profileFile.type)) {
+      alert("Profile picture format not supported. Use JPEG, PNG, GIF.");
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Save";
+      return;
+    }
+    if (profileFile.size > 10 * 1024 * 1024) {
+      alert("Profile picture size should be under 10MB.");
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Save";
+      return;
+    }
+
+    // Validate portfolio files
+    for (const file of portfolioFiles) {
+      if (!allowedTypes.includes(file.type)) {
+        alert(`Unsupported portfolio file type: ${file.name}`);
+        saveBtn.disabled = false;
+        saveBtn.textContent = "Save";
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        alert(`Portfolio file too large (max 10MB): ${file.name}`);
+        saveBtn.disabled = false;
+        saveBtn.textContent = "Save";
+        return;
+      }
+    }
+
+    async function uploadToCloudinary(file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+      const res = await fetch(CLOUDINARY_URL, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!res.ok) {
+        throw new Error("Upload failed.");
+      }
+      const data = await res.json();
+      if (!data.secure_url) {
+        throw new Error("Cloudinary did not return a secure URL.");
+      }
+      return data.secure_url;
+    }
+
+    const profilePicUrl = await uploadToCloudinary(profileFile);
+
+    const portfolioUrls = [];
+    for (const file of portfolioFiles) {
+      const url = await uploadToCloudinary(file);
+      portfolioUrls.push(url);
+    }
+
+    const userRef = doc(firestore, "users", user.uid);
+    await setDoc(userRef, {
+      name,
+      bio,
+      skill,
+      profilePicUrl,
+      portfolio: portfolioUrls,
+      updatedAt: new Date().toISOString(),
+      email: user.email
+    });
+
+    alert("Profile saved successfully!");
+    e.target.reset();
+
+  } catch (error) {
+    console.error("Error saving profile:", error);
+    alert("Error saving profile. See console for details.");
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save";
+  }
+});

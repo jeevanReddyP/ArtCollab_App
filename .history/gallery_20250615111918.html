@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<!-- Category Filters -->
+<div id="filters">
+  <select id="categoryFilter">
+    <option value="all">All Categories</option>
+    <option value="painting">Painting</option>
+    <option value="sculpture">Sculpture</option>
+    <option value="digitalArt">Digital Art</option>
+    <!-- Add more categories as needed -->
+  </select>
+  <input type="text" id="searchBar" placeholder="Search artworks..." />
+</div>
+
+<!-- Artworks Display -->
+<div id="artworksContainer">
+  <!-- Artworks will be dynamically inserted here -->
+</div>
+
+<script>
+  // Sample artworks data
+  const artworks = [
+    { title: "Sunset Bliss", category: "painting", description: "A beautiful sunset painting." },
+    { title: "Stone Sculpture", category: "sculpture", description: "A modern stone sculpture." },
+    { title: "Digital Dreams", category: "digitalArt", description: "A surreal digital artwork." },
+    // Add more artworks as needed
+  ];
+
+  // Function to display artworks
+  function displayArtworks(filteredArtworks) {
+    const container = document.getElementById("artworksContainer");
+    container.innerHTML = ""; // Clear existing artworks
+    filteredArtworks.forEach(artwork => {
+      const artworkElement = document.createElement("div");
+      artworkElement.classList.add("artwork");
+      artworkElement.innerHTML = `<h3>${artwork.title}</h3><p>${artwork.description}</p>`;
+      container.appendChild(artworkElement);
+    });
+  }
+
+  // Event listener for category filter
+  document.getElementById("categoryFilter").addEventListener("change", filterArtworks);
+  // Event listener for search bar
+  document.getElementById("searchBar").addEventListener("input", filterArtworks);
+
+  // Function to filter artworks based on selected category and search query
+  function filterArtworks() {
+    const category = document.getElementById("categoryFilter").value;
+    const searchQuery = document.getElementById("searchBar").value.toLowerCase();
+
+    const filteredArtworks = artworks.filter(artwork => {
+      const matchesCategory = category === "all" || artwork.category === category;
+      const matchesSearch = artwork.title.toLowerCase().includes(searchQuery) || artwork.description.toLowerCase().includes(searchQuery);
+      return matchesCategory && matchesSearch;
+    });
+
+    displayArtworks(filteredArtworks);
+  }
+
+  // Initial display of all artworks
+  displayArtworks(artworks);
+</script>

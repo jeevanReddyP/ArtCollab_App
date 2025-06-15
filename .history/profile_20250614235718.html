@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Art Upload - ArtCollab</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #fbeaff, #e0f7ff);
+      height: 100vh;
+      color: #333;
+    }
+    #navbar {
+      background-color: #222;
+      color: white;
+      display: flex;
+      padding: 20px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    #navbar h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+    #navbar p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      background-color: #444;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .links a:hover {
+      background-color: #555;
+    }
+    #hadding {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #e85c50;
+      margin-top: 30px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+    form {
+      max-width: 500px;
+      margin: 30px auto 60px;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #444;
+      font-size: 16px;
+    }
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+      margin-bottom: 20px;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #888;
+      outline: none;
+    }
+    button {
+      padding: 12px;
+      font-size: 16px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #e85c50;
+    }
+    footer {
+      background-color: rgb(6, 14, 37);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 3px;
+      height: 100px;
+      padding: 0 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    footer h2 {
+      margin: 0;
+      padding: 10px 0;
+    }
+    .footer-links a {
+      text-decoration: none;
+      margin: 0 10px;
+      color: #ccc;
+    }
+    .footer-links a:hover {
+      color: #fff;
+    }
+    #folign-items: center;
+    }
+    #footer-socialmedia-links i {
+      font-size: 24px;
+      color: white;
+      transition: color 0.3s ease;
+    }
+    #footer-socialmedia-links i:hover {
+      color: #ff6f61;
+    }oter-socialmedia-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      a
+  </style>
+</head>
+<body>
+
+  <div id="navbar">
+    <h2>ArtCollab</h2>
+    <p>A platform for artists to connect and share their creativity</p>
+    <div class="links">
+      <a href="dashboard.html">Home</a>
+      <a href="projects.html">MyProjects</a>
+      <a href="collab.html">NewCollab</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="profile.html">Account</a>
+      <a href="index.html">LogOut</a>
+    </div>
+  </div>
+
+  <h2 id="hadding">Upload Art</h2>
+
+  <form id="artUploadForm">
+    <label for="arttitle">Title</label>
+    <input type="text" id="arttitle" name="arttitle" required />
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description"></textarea>
+
+    <label for="artselect">Type of Art</label>
+    <select id="artselect" name="artselect" required>
+      <option value="" disabled selected>Select art type</option>
+      <option value="image">Image</option>
+      <option value="audio">Audio</option>
+      <option value="text">Text</option>
+    </select>
+
+    <div id="textContentWrapper" style="display:none;">
+      <label for="arttext">Enter Text Content</label>
+      <textarea id="arttext" name="arttext"></textarea>
+    </div>
+
+    <button type="submit" id="submit">Upload</button>
+  </form>
+
+  <footer id="footer">
+    <h2>ArtCollab</h2>
+    <p>Connecting artists and creativity worldwide.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms</a>
+    </div>
+    <div id="footer-socialmedia-links">
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+  <script type="module">
+    import { firestore } from './firebase-config.js';
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+    const auth = getAuth();
+
+    let currentUser = null;
+    let currentTitle = "";
+    let currentDescription = "";
+    let currentType = "";
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUser = user;
+      } else {
+        currentUser = null;
+        alert("Please log in to upload art.");
+      }
+    });
+
+    const uploadWidget = cloudinary.createUploadWidget({
+      cloudName: "dnbvjqofz",
+      uploadPreset: "unsigned_preset",
+      sources: ['local', 'url', 'camera', 'facebook', 'instagram'],
+      multiple: false,
+      resourceType: "auto",
+      maxFileSize: 10485760
+    }, (error, result) => {
+      if (!error && result && result.event === "success") {
+        const fileUrl = result.info.secure_url;
+        saveArtToFirestore({
+          title: currentTitle,
+          description: currentDescription,
+          type: currentType,
+          fileurl: fileUrl
+        });
+      } else if (error) {
+        alert("Upload failed: " + error.message);
+      }
+    });
+
+    async function saveArtToFirestore(artData) {
+      const user = auth.currentUser;
+      if (!user) {
+        alert("You must be logged in to upload art.");
+        return;
+      }
+
+      try {
+        await addDoc(collection(firestore, "artGallery"), {
+          title: artData.title,
+          description: artData.description,
+          type: artData.type,
+          fileurl: artData.fileurl || null,
+          content: artData.content || null,
+          createdAt: new Date(),
+          ownerId: user.uid,
+        });
+        alert("Art saved successfully!");
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        console.error("Error saving art:", error);
+        alert("Failed to save art.");
+      }
+    }
+
+    const form = document.getElementById('artUploadForm');
+    const artselect = document.getElementById('artselect');
+    const textContentWrapper = document.getElementById('textContentWrapper');
+
+    artselect.addEventListener('change', () => {
+      if (artselect.value === "text") {
+        textContentWrapper.style.display = "block";
+      } else {
+        textContentWrapper.style.display = "none";
+      }
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!currentUser) {
+        alert("Please log in first to upload.");
+        return;
+      }
+
+      const title = document.getElementById('arttitle').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const type = artselect.value;
+
+      if (!title) {
+        alert("Please enter a title.");
+        return;
+      }
+
+      if (type === "text") {
+        const content = document.getElementById('arttext').value.trim();
+        if (!content) {
+          alert("Please enter the text content.");
+          return;
+        }
+        saveArtToFirestore({ title, description, type, content });
+      } else if (type === "image" || type === "audio") {
+        currentTitle = title;
+        currentDescription = description;
+        currentType = type;
+        uploadWidget.open();
+      } else {
+        alert("Please select a valid art type.");
+      }
+    });
+  </script>
+</body>
+</html>
